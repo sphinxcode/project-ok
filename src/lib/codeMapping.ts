@@ -4,7 +4,7 @@
 
 export function convertLRToLetters(lrCode: string): string {
   // LLLL -> ITSC, LRLL -> IHSC, etc.
-  const mapping: Record<string, string> = {
+  const mapping: Record<string, string[]> = {
     'L': ['I', 'T', 'S', 'C'],
     'R': ['A', 'H', 'F', 'P']
   };
