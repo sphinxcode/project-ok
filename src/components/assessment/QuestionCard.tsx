@@ -54,6 +54,8 @@ export default function QuestionCard({
 
   // Auto-advance to next question after selection
   const autoAdvanceTimeout = useRef<NodeJS.Timeout | null>(null);
+  const isInitialMount = useRef(true);
+  const previousQuestionId = useRef(question.id);
 
   useEffect(() => {
     // Clear any existing timeout
@@ -61,8 +63,20 @@ export default function QuestionCard({
       clearTimeout(autoAdvanceTimeout.current);
     }
 
-    // If a value is selected, auto-advance after a delay
-    if (value !== null) {
+    // Check if question changed (navigation occurred)
+    if (previousQuestionId.current !== question.id) {
+      isInitialMount.current = true;
+      previousQuestionId.current = question.id;
+    }
+
+    // If this is initial mount or navigation to this question, don't auto-advance
+    if (isInitialMount.current && value !== null) {
+      isInitialMount.current = false;
+      return;
+    }
+
+    // If a value is selected after user interaction, auto-advance after a delay
+    if (value !== null && !isInitialMount.current) {
       autoAdvanceTimeout.current = setTimeout(() => {
         onNext();
       }, 600); // 600ms delay to show selection
@@ -74,7 +88,7 @@ export default function QuestionCard({
         clearTimeout(autoAdvanceTimeout.current);
       }
     };
-  }, [value, onNext]);
+  }, [value, onNext, question.id]);
 
   return (
     <AnimatePresence mode="wait">
