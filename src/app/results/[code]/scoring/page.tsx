@@ -234,18 +234,20 @@ export default function ScoringPage() {
             <p>Your responses across all four dimensions combine to create your unique orientation code:</p>
 
             <div className="grid md:grid-cols-4 gap-4">
+              {/* DIRECTION (Motivation) - Position 1: I/A */}
               <div className="text-center p-4 rounded-lg" style={{ backgroundColor: 'var(--gold-bg-subtle)', border: '1px solid var(--border-subtle)' }}>
                 <div className="text-sm uppercase tracking-wide mb-2" style={{ color: 'var(--text-tertiary)' }}>
-                  {dimensionInfo.determination.name}
+                  {dimensionInfo.motivation.name}
                 </div>
                 <div className="text-3xl font-serif text-gold mb-1">
-                  {dimensionScores.determination.left >= 6 ? 'I' : 'A'}
+                  {dimensionScores.motivation.left >= 6 ? 'I' : 'A'}
                 </div>
                 <div className="text-xs" style={{ color: 'var(--text-tertiary)' }}>
-                  {dimensionScores.determination.left >= 6 ? dimensionInfo.determination.leftLabel : dimensionInfo.determination.rightLabel}
+                  {dimensionScores.motivation.left >= 6 ? dimensionInfo.motivation.leftLabel : dimensionInfo.motivation.rightLabel}
                 </div>
               </div>
 
+              {/* PATTERN (Perspective) - Position 2: T/H */}
               <div className="text-center p-4 rounded-lg" style={{ backgroundColor: 'var(--gold-bg-subtle)', border: '1px solid var(--border-subtle)' }}>
                 <div className="text-sm uppercase tracking-wide mb-2" style={{ color: 'var(--text-tertiary)' }}>
                   {dimensionInfo.perspective.name}
@@ -258,27 +260,29 @@ export default function ScoringPage() {
                 </div>
               </div>
 
+              {/* STYLE (Determination) - Position 3: S/F */}
+              <div className="text-center p-4 rounded-lg" style={{ backgroundColor: 'var(--gold-bg-subtle)', border: '1px solid var(--border-subtle)' }}>
+                <div className="text-sm uppercase tracking-wide mb-2" style={{ color: 'var(--text-tertiary)' }}>
+                  {dimensionInfo.determination.name}
+                </div>
+                <div className="text-3xl font-serif text-gold mb-1">
+                  {dimensionScores.determination.left >= 6 ? 'S' : 'F'}
+                </div>
+                <div className="text-xs" style={{ color: 'var(--text-tertiary)' }}>
+                  {dimensionScores.determination.left >= 6 ? dimensionInfo.determination.leftLabel : dimensionInfo.determination.rightLabel}
+                </div>
+              </div>
+
+              {/* MODE (Environment) - Position 4: C/P */}
               <div className="text-center p-4 rounded-lg" style={{ backgroundColor: 'var(--gold-bg-subtle)', border: '1px solid var(--border-subtle)' }}>
                 <div className="text-sm uppercase tracking-wide mb-2" style={{ color: 'var(--text-tertiary)' }}>
                   {dimensionInfo.environment.name}
                 </div>
                 <div className="text-3xl font-serif text-gold mb-1">
-                  {dimensionScores.environment.left >= 6 ? 'S' : 'F'}
+                  {dimensionScores.environment.left >= 6 ? 'C' : 'P'}
                 </div>
                 <div className="text-xs" style={{ color: 'var(--text-tertiary)' }}>
                   {dimensionScores.environment.left >= 6 ? dimensionInfo.environment.leftLabel : dimensionInfo.environment.rightLabel}
-                </div>
-              </div>
-
-              <div className="text-center p-4 rounded-lg" style={{ backgroundColor: 'var(--gold-bg-subtle)', border: '1px solid var(--border-subtle)' }}>
-                <div className="text-sm uppercase tracking-wide mb-2" style={{ color: 'var(--text-tertiary)' }}>
-                  {dimensionInfo.motivation.name}
-                </div>
-                <div className="text-3xl font-serif text-gold mb-1">
-                  {dimensionScores.motivation.left >= 6 ? 'C' : 'P'}
-                </div>
-                <div className="text-xs" style={{ color: 'var(--text-tertiary)' }}>
-                  {dimensionScores.motivation.left >= 6 ? dimensionInfo.motivation.leftLabel : dimensionInfo.motivation.rightLabel}
                 </div>
               </div>
             </div>

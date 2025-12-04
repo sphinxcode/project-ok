@@ -38,8 +38,9 @@ export function calculateVariableCode(responses: QuestionResponse[]): VariableCo
     return score.left >= 6 ? 'L' : 'R';
   };
 
-  const code = `${getOrientation(scores.determination)}${getOrientation(scores.environment)}${getOrientation(scores.perspective)}${getOrientation(scores.motivation)}` as VariableCode;
-  
+  // Order: DIRECTION-PATTERN-STYLE-MODE = Motivation-Perspective-Determination-Environment
+  const code = `${getOrientation(scores.motivation)}${getOrientation(scores.perspective)}${getOrientation(scores.determination)}${getOrientation(scores.environment)}` as VariableCode;
+
   return code;
 }
 
